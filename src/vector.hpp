@@ -27,10 +27,25 @@ class vector {
       _finish = _start + n;
       _endOfStorage = _finish;
       for (size_t i = 0 ; i < n ; ++i) {
-        _start[i] = v[i];
+        _start[i] = v._start[i];
       }
     }
 
+    vector<T>& operator=(const vector<T>& v) {
+      if (this != &v) {
+        delete[] _start;
+        size_t n = v.size();
+        _start = new T[n];
+        _finish = _start + n;
+        _endOfStorage = _finish;
+
+        for (size_t i = 0 ; i < n ; ++i) {
+          _start[i] = v._start[i];
+        }
+      }
+      return *this;
+    }
+    
     std::size_t size() const { 
       return _finish - _start; 
     }
