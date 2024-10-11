@@ -20,6 +20,17 @@ class vector {
       }
     }
 
+    // 复制构造函数
+    vector(const vector<T>& v) {
+      size_t n = v.size();
+      _start = new T[n];
+      _finish = _start + n;
+      _endOfStorage = _finish;
+      for (size_t i = 0 ; i < n ; ++i) {
+        _start[i] = v[i];
+      }
+    }
+
     std::size_t size() const { 
       return _finish - _start; 
     }
